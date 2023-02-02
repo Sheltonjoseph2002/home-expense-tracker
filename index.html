@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="index.js"></script>
-    <p id="demo"></p>
-    <button onclick="myFunction();">click</button>
-</body>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="login-container">
+      <h1>Expense Tracker</h1>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <p id="message"></p>
+      </form>
+    </div>
+    <div id="main-container" style="display:none">
+      <h1>Welcome to Expense Tracker</h1>
+      <form id="expense-form">
+        <input type="text" id="expense-name" placeholder="Expense Name">
+        <input type="number" id="expense-amount" placeholder="Expense Amount">
+        <button type="submit">Add Expense</button>
+      </form>
+      <table id="expense-table">
+        <thead>
+          <tr>
+            <th>Expense Name</th>
+            <th>Expense Amount</th>
+          </tr>
+        </thead>
+        <tbody id="expense-list"></tbody>
+      </table>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-firestore.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
