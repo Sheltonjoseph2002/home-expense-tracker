@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            background-color: #333;
+            /* set background color */
+            height: 50px;
+            /* set height */
+        }
+
+        ul {
+            list-style-type: none;
+            /* remove bullet points */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            /* float list items to the left */
+        }
+
+        li a {
+            display: block;
+            /* display links as block elements */
+            color: white;
+            /* set font color */
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+            /* remove underline */
+        }
+
+        li a:hover {
+            background-color: #111;
+            /* add background color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li style="float: right"><a id="signoutlink"  href="signup.html">SignUp</a></li>
+            <li style="float: right"><a id="userlink"  href="#">Username</a></li>
+        </ul>
+    </nav>
+
+    <p>Hello</p>
+    <label></label>
+    <script>
+        let userlink = document.getElementById('userlink');
+        let signoutlink = document.getElementById('signoutlink');
+        var currentUser = null; 
+
+        function getUsername() {
+                let keepLoggedIn = localStorage.getItem("remember");
+                console.log(keepLoggedIn)
+                if (keepLoggedIn == "yes") {
+                    console.log(keepLoggedIn)
+                    currentUser = JSON.parse(localStorage.getItem('username'));
+                } else {
+                    console.log(keepLoggedIn)
+                    currentUser = JSON.parse(sessionStorage.getItem('username'));
+                }
+            }
+
+        function Signout() {
+            sessionStorage.removeItem('username');
+            localStorage.removeItem('username');
+            localStorage.removeItem('remember');
+            window.location = "home.html"
+        }
+
+        window.onload = function(){
+            getUsername();
+            console.log(currentUser)
+            if(currentUser == null){
+                userlink.innerHTML = "Create New Account";
+                userlink.href = "signup.html"
+
+                signoutlink.innerHTML = "Login";
+                signoutlink.href = "login.html"
+            }
+            else{
+                userlink.innerHTML = currentUser;
+                userlink.href = "#"
+
+                signoutlink.innerHTML = "Sign Out";
+                signoutlink.href = "javascript:Signout()"
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
