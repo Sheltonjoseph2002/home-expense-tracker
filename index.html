@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Penny </title>
     <style>
         nav {
             background-color: #333;
@@ -42,56 +42,256 @@
             background-color: #111;
             /* add background color on hover */
         }
+
+        /* Swipe Right button */
+
+        .menu-btn {
+            display: inline-block;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 50%;
+            margin: 1%;
+        }
+
+        .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: rgb(242, 138, 138);
+            margin-bottom: 5px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .line:first-child {
+            transform-origin: left center;
+        }
+
+        .line:last-child {
+            margin-bottom: 0;
+            transform-origin: right center;
+        }
+
+        .menu-btn:hover .line {
+            background-color: #000;
+        }
+
+        .menu-btn:focus {
+            outline: none;
+        }
+
+        .menu-btn:focus .line {
+            transform: scale(1.1);
+        }
+
+        .menu-btn.active .line:first-child {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active .line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active .line:last-child {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .menu-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .navbar-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar-list li {
+            margin-right: 20px;
+        }
+
+        .navbar-list li:last-child {
+            margin-right: 0;
+        }
+
+        .navbar-list li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar-extended {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            height: 100vh;
+            width: 300px;
+            background-color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-extended ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            top: 10;
+        }
+
+        .navbar-extended ul li {
+            margin-top: 50px;
+            margin-left: 10px;
+        }
+
+        .navbar-extended ul li a {
+            color: #fff;
+            text-decoration: none;
+            top: 10;
+        }
+
+        .navbar-extended.show {
+            left: 0;
+        }
+
+        .close-button {
+            background-color: rgba(204, 204, 204, 0);
+            float: right;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .close-icon {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Plus Icon */
+        .add-group-button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            margin-left: 20%;
+            margin-top: 15%;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .add-group-button:hover {
+            transform: scale(1.05);
+        }
+
+        .add-group-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 0;
+        }
+
+        .add-group-text {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 
 <body>
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li style="float: right"><a id="signoutlink"  href="signup.html">SignUp</a></li>
-            <li style="float: right"><a id="userlink"  href="#">Username</a></li>
-        </ul>
-    </nav>
+            <li>
+                <div class="navbar-container"></div>
+                <button class="menu-btn" onclick="toggleNav()">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+                </div>
+            </li>
+            <li style="float: right"><a id="signoutlink" href="signup.html">SignUp</a></li>
+            <li style="float: right"><a id="userlink" href="#">Username</a></li>
 
-    <p>Hello</p>
+        </ul>
+        <div class="navbar-extended">
+            <ul>
+                <button class="close-button" onclick="toggleNav()"><span class="close-icon">&times;</span></button>
+
+                <button class="add-group-button">
+                    <span class="add-group-icon">+</span>
+                    <span class="add-group-text">Add Group</span>
+                </button>
+
+
+                <li><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/akSyDRaOWoo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <label></label>
     <script>
+        function toggleNav() {
+            const navbarExtended = document.querySelector('.navbar-extended');
+            navbarExtended.classList.toggle('show');
+        }
+
         let userlink = document.getElementById('userlink');
         let signoutlink = document.getElementById('signoutlink');
-        var currentUser = null; 
+        var currentUser = null;
 
         function getUsername() {
-                let keepLoggedIn = localStorage.getItem("remember");
+            let keepLoggedIn = localStorage.getItem("remember");
+            console.log(keepLoggedIn)
+            if (keepLoggedIn == "yes") {
                 console.log(keepLoggedIn)
-                if (keepLoggedIn == "yes") {
-                    console.log(keepLoggedIn)
-                    currentUser = JSON.parse(localStorage.getItem('username'));
-                } else {
-                    console.log(keepLoggedIn)
-                    currentUser = JSON.parse(sessionStorage.getItem('username'));
-                }
+                currentUser = JSON.parse(localStorage.getItem('username'));
+            } else {
+                console.log(keepLoggedIn)
+                currentUser = JSON.parse(sessionStorage.getItem('username'));
             }
+        }
 
         function Signout() {
             sessionStorage.removeItem('username');
             localStorage.removeItem('username');
             localStorage.removeItem('remember');
-            window.location = "home.html"
+            window.location = "index.html"
         }
 
-        window.onload = function(){
+        window.onload = function () {
             getUsername();
             console.log(currentUser)
-            if(currentUser == null){
+            if (currentUser == null) {
                 userlink.innerHTML = "Create New Account";
                 userlink.href = "signup.html"
 
                 signoutlink.innerHTML = "Login";
                 signoutlink.href = "login.html"
-            }
-            else{
+            } else {
                 userlink.innerHTML = currentUser;
                 userlink.href = "#"
 
@@ -99,8 +299,6 @@
                 signoutlink.href = "javascript:Signout()"
             }
         }
-
-
     </script>
 </body>
 
