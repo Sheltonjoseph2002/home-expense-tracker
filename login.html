@@ -64,7 +64,7 @@
 </head>
 
 <body>
-    <h1>Signup</h1>
+    <h1>Sign In</h1>
     <form>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -75,7 +75,7 @@
         <input type="checkbox" id="remember" name="remember" required>Remember me<br><br>
 
         <input type="button" value="Submit" id="submitbutton"><br>
-        <a href="login.html" id="redirect">I am New </a>
+        <a href="signup.html" id="redirect">I am New </a>
     </form>
     <script type="module">
         import {
@@ -153,12 +153,12 @@
 
           if (!keeploged){
             sessionStorage.setItem("username",username);
-            window.location = "home.html"
+            window.location = "index.html"
           }
           else{
             localStorage.setItem("remember","yes")
             localStorage.setItem("username",username)
-            window.location = "home.html"
+            window.location = "index.html"
           }
         }
     
